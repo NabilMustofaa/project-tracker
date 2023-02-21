@@ -11,9 +11,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays', function (Blueprint $table) {
-            $table->date('Date')->primary();
+        Schema::create('z_tmp_projects', function (Blueprint $table) {
+            $table->id('PICId');
             $table->string('Description');
+            $table->string('ProjectGroup')->nullable();
+            $table->string('TrelloBoardId')->nullable();
+            $table->boolean('SaturdayIsWorkDay');
             $table->dateTime('CreateDate')->default('now()');
         });
     }
@@ -23,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('z_tmp_projects');
     }
 };

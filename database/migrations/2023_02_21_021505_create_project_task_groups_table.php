@@ -11,10 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays', function (Blueprint $table) {
-            $table->date('Date')->primary();
-            $table->string('Description');
-            $table->dateTime('CreateDate')->default('now()');
+        Schema::create('project_task_groups', function (Blueprint $table) {
+            $table->string('ProjectId');
+            $table->integer('No');
+            $table->primary(['ProjectId', 'No']);
+            $table->String('Description');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('project_task_groups');
     }
 };

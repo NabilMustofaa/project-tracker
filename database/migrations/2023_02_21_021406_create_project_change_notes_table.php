@@ -11,9 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('holidays', function (Blueprint $table) {
-            $table->date('Date')->primary();
-            $table->string('Description');
+        Schema::create('project_change_notes', function (Blueprint $table) {
+            $table->foreignId('ProjectId');
+            $table->date('Date');  
+            $table->primary(['ProjectId', 'Date']);
+            $table->text('Note');
             $table->dateTime('CreateDate')->default('now()');
         });
     }
@@ -23,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('holidays');
+        Schema::dropIfExists('project_change_notes');
     }
 };
